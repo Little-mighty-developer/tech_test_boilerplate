@@ -6,18 +6,16 @@ from unittest.mock import patch, mock_open
 import pytest
 import sys
 from pathlib import Path
-from dotenv import load_dotenv
 
-# Set up import path
+# Add parent directory to Python path
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from github.scripts.update_dx import TOKEN, REPO, update_metrics
+from scripts.update_dx import TOKEN, REPO, update_metrics
 
 @pytest.fixture(autouse=True)
-def setup_env():
-    """Ensure environment variables are set up correctly."""
-    token = os.getenv('GH_TOKEN')
-    if not token:
-        pytest.skip("GH_TOKEN not set in .env file")
+def mock_env():
+    """Mock environment variables for testing."""
+    with patch.dict(os.environ, {'GH_TOKEN': 'fake-token-for-testing'}):
+        yield
 
 @pytest.fixture
 def mock_pr_response():

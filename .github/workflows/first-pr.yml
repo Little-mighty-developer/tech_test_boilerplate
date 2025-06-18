@@ -1,0 +1,35 @@
+name: Create First PR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  first-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Git config
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Create feature branch
+        run: |
+          git checkout -b init-setup
+          echo "# Replace this with your README content" > README.md
+          git add README.md
+          git commit -m "Initial setup: Add placeholder README"
+          git push origin init-setup
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: init-setup
+          title: "📦 First Setup Tasks"
+          body: "This PR sets up the basic structure of the repo. Please complete the checklist in the description."
