@@ -25,7 +25,7 @@ jobs:
       - name: Run Python tests with coverage
         run: |
           # Run tests with coverage
-          coverage run -m pytest .github/scripts/test_update_toc.py -v
+          coverage run -m pytest .github/scripts/test_update_dx.py -v
           # Generate coverage reports
           coverage report
           coverage html
