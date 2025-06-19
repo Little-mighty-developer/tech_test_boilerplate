@@ -2,20 +2,29 @@
 
 A comprehensive Python boilerplate for technical interviews and coding challenges, featuring Docker and Kubernetes integration.
 
+[![Maintainability](https://qlty.sh/badges/093ec62a-41e0-4919-8598-73ccaed85597/maintainability.svg)](https://qlty.sh/gh/Little-mighty-developer/projects/tech_test_boilerplate)
+
+[![Code Coverage](https://qlty.sh/badges/093ec62a-41e0-4919-8598-73ccaed85597/test_coverage.svg)](https://qlty.sh/gh/Little-mighty-developer/projects/tech_test_boilerplate)
+
+# 📊 Developer Experience Metrics
+
 ## 🚀 Features
 
 - **Code Quality**
+
   - Black for code formatting
   - Flake8 for linting
   - MyPy for type checking
   - Pre-commit hooks for automated checks
 
 - **Testing**
+
   - Pytest for unit testing
   - Pytest-cov for coverage reporting
   - FastAPI for API development
 
 - **Containerization & Orchestration**
+
   - Docker support
   - Kubernetes deployment
   - Health checks
@@ -27,39 +36,43 @@ A comprehensive Python boilerplate for technical interviews and coding challenge
   - Environment variable management
   - Development tools configuration
 
-## 📦 Installation
-
-1. Clone the repository:
-```bash
 git clone <repository-url>
+
 cd tech_test_boilerplate
-```
+
+
+````
 
 2. Create and activate virtual environment:
+
 ```bash
+
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+````
 
 3. Install dependencies:
+
 ```bash
-pip install -r requirements.txt
+
 ```
 
 4. Install pre-commit hooks:
-```bash
-pre-commit install
-```
 
+pre-commit install
+
+````
 5. Set up environment variables:
+
 ```bash
 cp .env.example .env
-```
+````
 
 ## 🛠️ Available Commands
 
 - `pytest` - Run tests
 - `pytest --cov` - Run tests with coverage
+
 - `black .` - Format code
 - `flake8` - Run linting
 - `mypy .` - Run type checking
@@ -68,17 +81,18 @@ cp .env.example .env
 ## 🐳 Docker
 
 Build and run the Docker container:
-```bash
+
+````bash
 docker build -t tech-test-app .
 docker run -p 8000:8000 tech-test-app
-```
 
 ## ☸️ Kubernetes
 
 Deploy to Kubernetes:
+
 ```bash
 kubectl apply -f k8s/deployment.yaml
-```
+````
 
 ## 📁 Project Structure
 

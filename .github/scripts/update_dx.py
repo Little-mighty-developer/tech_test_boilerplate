@@ -53,10 +53,14 @@ metrics = f"""
 
 | Metric                      | Value        | Notes |
 |-----------------------------|--------------|-------|
-| 🔁 Avg PR Size              | {avg_pr_size} LOC | Lines of code added/removed |
-| ⏱️ Avg Time to Review       | {avg_review_time} hours | Time to first comment |
-| 🧵 Avg Time to Merge        | {avg_merge_time} hours | From PR open to merge |
-| ⚠️ % Merged Without Review  | {unreviewed_pct}% | PRs with 0 comments |
+| 🔁 Avg PR Size              | {avg_pr_size} LOC | \
+Lines of code added/removed |
+| ⏱️ Avg Time to Review       | {avg_review_time} hours | \
+Time to first comment |
+| 🧵 Avg Time to Merge        | {avg_merge_time} hours | \
+From PR open to merge |
+| ⚠️ % Merged Without Review  | {unreviewed_pct}% | \
+PRs with 0 comments |
 | 🚑 Last Incident Recovery   | —            | Manually filled |
 | 🧠 DX Label Trends          | —            | Labels like `dx:blocked` |
 """

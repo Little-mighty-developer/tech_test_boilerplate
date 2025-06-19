@@ -1,4 +1,4 @@
-import pytest
+import pytest  # noqa: F401
 from unittest.mock import patch, mock_open, MagicMock
 import os
 import sys
@@ -24,7 +24,7 @@ def test_update_dx_metrics(mock_file):
             "url": "https://api.github.com/repos/owner/repo/pulls/1",
             "_links": {
                 "review_comments": {
-                    "href": "https://api.github.com/repos/owner/repo/pulls/1/comments"
+                    "href": ("https://api.github.com/repos/owner/repo/pulls/1/comments")
                 }
             },
         },
@@ -34,7 +34,7 @@ def test_update_dx_metrics(mock_file):
             "url": "https://api.github.com/repos/owner/repo/pulls/2",
             "_links": {
                 "review_comments": {
-                    "href": "https://api.github.com/repos/owner/repo/pulls/2/comments"
+                    "href": ("https://api.github.com/repos/owner/repo/pulls/2/comments")
                 }
             },
         },
@@ -96,12 +96,19 @@ def test_update_dx_metrics(mock_file):
             spec.loader.exec_module(update_dx)
 
     # Check that open was called for reading and writing
-    assert mock_file.call_count >= 2
+    if mock_file.call_count < 2:
+        raise AssertionError(
+            f"Expected at least 2 file operations, got {mock_file.call_count}"
+        )
+
     # Check that the README was written with updated metrics
     written = "".join(call.args[0] for call in mock_file().write.call_args_list)
-    assert "Avg PR Size" in written
-    assert "2024-06-10" in written
-    assert "% Merged Without Review" in written
+    if "Avg PR Size" not in written:
+        raise AssertionError("Missing 'Avg PR Size' in output")
+    if "2024-06-10" not in written:
+        raise AssertionError("Missing date in output")
+    if "% Merged Without Review" not in written:
+        raise AssertionError("Missing review percentage in output")
 
 
 @patch("builtins.open", new_callable=mock_open, read_data="No marker here")
@@ -116,7 +123,9 @@ def test_update_dx_marker_not_found(mock_file):
                 "url": "https://api.github.com/repos/owner/repo/pulls/1",
                 "_links": {
                     "review_comments": {
-                        "href": "https://api.github.com/repos/owner/repo/pulls/1/comments"
+                        "href": (
+                            "https://api.github.com/repos/owner/repo/pulls/1/comments"
+                        )
                     }
                 },
             }
